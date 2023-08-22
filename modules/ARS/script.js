@@ -1,0 +1,96 @@
+const precio = document.getElementById("precio-ARS"),
+  usdt = document.getElementById("usdt-ARS"),
+  tasaVenta = document.getElementById("tasa-venta-ARS"),
+  tasaCompra = document.getElementById("tasa-compra-ARS"),
+  ganancia = document.getElementById("ganancia"),
+  cantidad = document.getElementById("cantidad"),
+  resultado = document.getElementById("resultado"),
+  boton = document.getElementById("procesar"),
+  mainElement = document.querySelector("main"),
+  datosMemoria = document.querySelectorAll("[data-memoria]"),
+  datosActualizar = document.querySelectorAll("[data-actualizar]");
+
+const actualizarDatosMemoria = () => {
+  datosMemoria.forEach((ele) => {
+    const datos = localStorage.getItem(ele.id);
+
+    if (datos !== null) ele.value = datos;
+
+    ele.addEventListener("input", () =>
+      localStorage.setItem(ele.id, ele.value)
+    );
+  });
+};
+
+const calcularTasaEspecial = () => {
+  const tasaEspecial =
+    (Number(tasaVenta.value) * 100) / Number(tasaCompra.value);
+
+  ganancia.innerText = `${(tasaEspecial - 100).toFixed(2)}%`;
+};
+
+const calcularPorcentaje = () => {
+  if (!precio.value || precio.value == 0) return (ganancia.innerText = 0);
+
+  tasaCompra.value = Number(precio.value) / Number(usdt.value);
+
+  const porcentaje = (Number(tasaVenta.value) * 100) / tasaCompra.value;
+
+  ganancia.innerText = `${Math.abs((porcentaje - 100).toFixed(2))}%`;
+};
+
+const calcularCantidad = () => {
+  const cantidadResultado = Number(cantidad.value) * Number(tasaVenta.value);
+
+  if (cantidadResultado > 999.99) {
+    const formatoCantidad = cantidadResultado.toLocaleString("es-ES", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    const separadorCantidad = formatoCantidad.split(",");
+
+    const formatoCantidadResultado = `${separadorCantidad[0].replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      "."
+    )},${separadorCantidad[1]}`;
+
+    resultado.innerText = `${formatoCantidadResultado} ARS`;
+  } else {
+    const formatoCantidadResultado = cantidadResultado.toFixed(2);
+
+    resultado.innerText = `${formatoCantidadResultado.replace(".", ",")} ARS`;
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  actualizarDatosMemoria();
+  calcularPorcentaje();
+  calcularCantidad();
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target === boton) {
+    e.preventDefault();
+    calcularPorcentaje();
+    calcularCantidad();
+  }
+
+  if (e.target.getAttribute("data-ruta") === "index.html") {
+    window.location.href = `../../index.html`;
+    return;
+  }
+
+  if (e.target.hasAttribute("data-ruta")) {
+    window.location.href = `../${e.target.getAttribute("data-ruta")}`;
+  }
+});
+
+tasaCompra.addEventListener("input", calcularTasaEspecial);
+
+datosActualizar.forEach((ele) => {
+  ele.addEventListener("input", () => {
+    calcularPorcentaje();
+    calcularCantidad();
+  });
+});

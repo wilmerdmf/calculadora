@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <meta name="title" content="Calculadora">
+    <meta name="description" content="Calculadora para remesas">
+    <link rel="icon" type="image/png" href="../../assets/img/calculator.svg">
+    <!-- Styles  -->
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="barra-navegacion max-width-container">
+
+            <ul>
+
+                <li id="venezuela" data-ruta="VES/index_VES.html">VES</li>
+
+                <li id="colombia" data-ruta="COP/index_COP.html">COP</li>
+
+                <li class="is-active" id="peru" data-ruta="PEN/index_PEN.html">PEN</li>
+
+                <li id="argentina" data-ruta="ARS/index_ARS.html">ARS</li>
+
+                <li id="otros" data-ruta="index.html">Otros</li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <main class="contenedor max-width-container">
+
+        <div class="contenedor-porcentaje">
+
+            <form>
+
+                <div class="form-container">
+
+                    <input id="precio-PEN" placeholder="Precio" type="number" step="any" data-memoria>
+
+                    <input id="usdt-PEN" placeholder="USDT" type="number" step="any" data-memoria>
+
+                    <input id="tasa-venta-PEN" placeholder="Tasa Venta" type="number" step="any" data-memoria
+                        data-actualizar>
+
+                    <input id="tasa-compra-PEN" placeholder="Tasa Compra" type="number" step="any" data-memoria>
+
+                </div>
+
+                <p id="ganancia"></p>
+
+                <input id="procesar" type="button" value="Calcular">
+
+            </form>
+
+        </div>
+
+        <div class="contenedor-cantidad">
+
+            <input id="cantidad" placeholder="Cantidad" type="number" data-memoria data-actualizar>
+
+            <p id="resultado"></p>
+
+        </div>
+
+    </main>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
