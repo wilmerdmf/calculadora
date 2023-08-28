@@ -1,5 +1,5 @@
 const precio = document.getElementById("precio-COP"),
-  usdt = document.getElementById("usdt-COP"),
+  usdt = document.getElementById("usdt"),
   tasaVenta = document.getElementById("tasa-venta-COP"),
   tasaCompra = document.getElementById("tasa-compra-COP"),
   ganancia = document.getElementById("ganancia"),

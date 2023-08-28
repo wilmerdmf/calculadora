@@ -1,5 +1,5 @@
 const precio = document.getElementById("precio-VES"),
-  usdt = document.getElementById("usdt-VES"),
+  usdt = document.getElementById("usdt"),
   tasaVenta = document.getElementById("tasa-venta-VES"),
   tasaCompra = document.getElementById("tasa-compra-VES"),
   ganancia = document.getElementById("ganancia"),
@@ -77,7 +77,7 @@ document.addEventListener("click", (e) => {
   }
 
   if (e.target.getAttribute("data-ruta") === "index.html") {
-    window.location.href = `.././index.html`;
+    window.location.href = `../../index.html`;
     return;
   }
 

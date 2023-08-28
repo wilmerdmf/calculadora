@@ -41,7 +41,8 @@ html {
 
 header {
   height: var(--header-height);
-  border: var(--border);
+  border-bottom: var(--border);
+  user-select: none;
 }
 
 .barra-navegacion {
@@ -59,7 +60,7 @@ header {
 .barra-navegacion ul li {
   padding: 0.5rem 5%;
   cursor: pointer;
-  font-size: calc(13px + ((25 - 13) * ((100vw - 320px) / (1200 - 320))));
+  font-size: calc(12px + ((20 - 12) * ((100vw - 320px) / (1200 - 320))));
 }
 
 .barra-navegacion ul li:hover {
@@ -67,9 +68,11 @@ header {
 }
 
 .barra-navegacion ul li.is-active {
+  cursor: pointer;
   font-weight: bolder;
   color: var(--second-text-color);
-  font-size: calc(15px + ((35 - 15) * ((100vw - 320px) / (1200 - 320))));
+  font-size: calc(15px + ((22 - 15) * ((100vw - 320px) / (1200 - 320))));
+  pointer-events: none;
 }
 
 input::-webkit-outer-spin-button,
@@ -92,7 +95,7 @@ input::-webkit-inner-spin-button {
 
 @media (min-width: 1000px) {
   .barra-navegacion ul li {
-    font-size: calc(7px + ((12 - 7) * ((100vw - 320px) / (1200 - 320))));
+    font-size: calc(5px + ((10 - 5) * ((100vw - 320px) / (1200 - 320))));
   }
 
   .barra-navegacion ul li.is-active {
@@ -130,7 +133,7 @@ input::-webkit-inner-spin-button {
   margin: 2vh 5%;
   width: 90%;
   padding: 0.3rem;
-  font-size: calc(20px + ((25 - 20) * ((100vw - 320px) / (1200 - 320))));
+  font-size: calc(15px + ((20 - 15) * ((100vw - 320px) / (1200 - 320))));
   border-radius: 0.3rem;
 }
 
@@ -178,7 +181,7 @@ input::-webkit-inner-spin-button {
   .contenedor-cantidad input,
   .contenedor-comision input {
     padding: 0.5rem;
-    font-size: calc(20px + ((25 - 20) * ((100vw - 320px) / (1200 - 320))));
+    font-size: calc(17px + ((22 - 17) * ((100vw - 320px) / (1200 - 320))));
   }
 
   #ganancia,
