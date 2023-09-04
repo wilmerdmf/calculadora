@@ -106,11 +106,16 @@ input::-webkit-inner-spin-button {
 /*? Contenido */
 
 .contenedor,
-.contenedor-comision {
+.contenedor-comision,
+.contenedor-ganancia {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 50%;
+}
+
+.contenedor {
   height: calc(100vh - var(--header-height));
 }
 
@@ -126,7 +131,8 @@ input::-webkit-inner-spin-button {
 
 .contenedor-porcentaje input,
 .contenedor-cantidad input,
-.contenedor-comision input {
+.contenedor-comision input,
+.contenedor-ganancia input {
   border: var(--border);
   background-color: inherit;
   color: var(--text-color);
@@ -137,21 +143,15 @@ input::-webkit-inner-spin-button {
   border-radius: 0.3rem;
 }
 
-.contenedor-comision > * {
-  margin: 1.5rem;
-}
-
-.contenedor-comision h1 {
+.contenedor-comision h1,
+.contenedor-ganancia h2 {
   text-align: center;
-  font-size: calc(25px + ((35 - 25) * ((100vw - 320px) / (1200 - 320))));
-}
-
-.contenedor-comision p {
-  font-size: calc(20px + ((35 - 20) * ((100vw - 320px) / (1200 - 320))));
+  font-size: calc(15px + ((25 - 15) * ((100vw - 320px) / (1200 - 320))));
 }
 
 #ganancia,
-#resultado {
+#resultado,
+#ganancia-diaria {
   font-size: calc(16px + ((25 - 16) * ((100vw - 320px) / (1200 - 320))));
   margin: 0.5rem 5%;
   text-align: center;
@@ -179,13 +179,20 @@ input::-webkit-inner-spin-button {
 @media (min-width: 400px) {
   .contenedor-porcentaje input,
   .contenedor-cantidad input,
-  .contenedor-comision input {
+  .contenedor-comision input,
+  .contenedor-ganancia input {
     padding: 0.5rem;
     font-size: calc(17px + ((22 - 17) * ((100vw - 320px) / (1200 - 320))));
   }
 
+  .contenedor-comision h1,
+  .contenedor-ganancia h2 {
+    font-size: calc(18px + ((25 - 18) * ((100vw - 320px) / (1200 - 320))));
+  }
+
   #ganancia,
-  #resultado {
+  #resultado,
+  #ganancia-diaria {
     font-size: calc(18px + ((25 - 18) * ((100vw - 320px) / (1200 - 320))));
   }
 }
@@ -193,13 +200,20 @@ input::-webkit-inner-spin-button {
 @media (min-width: 700px) {
   .contenedor-porcentaje input,
   .contenedor-cantidad input,
-  .contenedor-comision input {
+  .contenedor-comision input,
+  .contenedor-ganancia input {
     padding: 1rem;
     font-size: calc(22px + ((30 - 22) * ((100vw - 320px) / (1200 - 320))));
   }
 
+  .contenedor-comision h1,
+  .contenedor-ganancia h2 {
+    font-size: calc(21px + ((30 - 21) * ((100vw - 320px) / (1200 - 320))));
+  }
+
   #ganancia,
-  #resultado {
+  #resultado,
+  #ganancia-diaria {
     font-size: calc(20px + ((30 - 20) * ((100vw - 320px) / (1200 - 320))));
   }
 
@@ -230,22 +244,26 @@ input::-webkit-inner-spin-button {
     font-size: calc(8px + ((13 - 8) * ((100vw - 320px) / (1200 - 320))));
   }
 
-  .contenedor-comision h1 {
-    font-size: calc(15px + ((25 - 15) * ((100vw - 320px) / (1200 - 320))));
+  .contenedor-comision h1,
+  .contenedor-ganancia h2 {
+    font-size: calc(12px + ((20 - 12) * ((100vw - 320px) / (1200 - 320))));
   }
 
-  .contenedor-comision input {
+  .contenedor-comision input,
+  .contenedor-ganancia input {
     width: 50%;
     padding: 0.5rem;
     font-size: calc(10px + ((15 - 10) * ((100vw - 320px) / (1200 - 320))));
   }
 
-  .contenedor-comision p {
-    font-size: calc(10px + ((20 - 10) * ((100vw - 320px) / (1200 - 320))));
+  .contenedor-comision > *,
+  .contenedor-ganancia > * {
+    margin: 1.5rem;
   }
 
   #ganancia,
-  #resultado {
+  #resultado,
+  #ganancia-diaria {
     font-size: calc(10px + ((15 - 10) * ((100vw - 320px) / (1200 - 320))));
     margin-top: 5%;
   }

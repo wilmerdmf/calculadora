@@ -26,7 +26,12 @@ const calcularTasaEspecial = () => {
   const tasaEspecial =
     (Number(tasaVenta.value) * 100) / Number(tasaCompra.value);
 
-  ganancia.innerText = `${(tasaEspecial - 100).toFixed(2)}%`;
+  const valorFinal = (tasaEspecial - 100).toFixed(2);
+
+  if (Math.sign(valorFinal) === 1)
+    return (ganancia.innerText = "Balance Negativo");
+
+  ganancia.innerText = `${Math.abs(valorFinal)}%`;
 };
 
 const calcularPorcentaje = () => {
@@ -34,9 +39,12 @@ const calcularPorcentaje = () => {
 
   tasaCompra.value = Number(precio.value) / Number(usdt.value);
 
-  const porcentaje = (Number(tasaVenta.value) * 100) / tasaCompra.value;
+  const porcentaje = (Number(tasaVenta.value) * 100) / tasaCompra.value - 100;
 
-  ganancia.innerText = `${Math.abs((porcentaje - 100).toFixed(2))}%`;
+  if (Math.sign(porcentaje) === 1)
+    return (ganancia.innerText = "Balance Negativo");
+
+  ganancia.innerText = `${Math.abs(porcentaje.toFixed(2))}%`;
 };
 
 const calcularCantidad = () => {

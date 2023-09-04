@@ -3,7 +3,10 @@ const cantidad = document.getElementById("cantidad-bolivar"),
   datosMemoria = document.querySelectorAll("[data-memoria]"),
   datosActualizar = document.querySelectorAll("[data-actualizar]"),
   boton = document.getElementById("procesar"),
-  comisionTotal = document.getElementById("comision");
+  comisionTotal = document.getElementById("comision"),
+  cantidadAnterior = document.getElementById("cantidad-anterior"),
+  cantidadSiguiente = document.getElementById("cantidad-siguiente"),
+  gananciaDiaria = document.getElementById("ganancia-diaria");
 
 const actualizarDatosMemoria = () => {
   datosMemoria.forEach((ele) => {
@@ -47,6 +50,22 @@ const calcularComision = () => {
     .replace(".", ",")} Bs`;
 };
 
+const calcularGanancia = () => {
+  if (!cantidadSiguiente.value || !cantidadAnterior.value)
+    return (gananciaDiaria.innerText = 0);
+
+  const cantidad =
+    (Number(cantidadAnterior.value) * 100) / Number(cantidadSiguiente.value) -
+    100;
+
+  if (Math.sign(cantidad) === 1)
+    return (gananciaDiaria.innerText = "Balance Negativo");
+
+  const formatoCantidad = cantidad.toFixed(2);
+
+  gananciaDiaria.innerText = `Ganancia: ${Math.abs(formatoCantidad)}%`;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   actualizarDatosMemoria();
   calcularComision();
@@ -57,6 +76,7 @@ document.addEventListener("click", (e) => {
     e.preventDefault();
     actualizarDatosMemoria();
     calcularComision();
+    calcularGanancia();
   }
 
   if (e.target.getAttribute("data-ruta") === "index.html") {
@@ -72,5 +92,6 @@ document.addEventListener("click", (e) => {
 datosActualizar.forEach((ele) => {
   ele.addEventListener("input", () => {
     calcularComision();
+    calcularGanancia();
   });
 });
