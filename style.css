@@ -40,6 +40,9 @@ html {
 /*? Header Navegación */
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: var(--header-height);
   border-bottom: var(--border);
   user-select: none;
@@ -113,6 +116,7 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   height: 50%;
+  margin-top: var(--header-height);
 }
 
 .contenedor {
