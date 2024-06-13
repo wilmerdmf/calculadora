@@ -63,7 +63,7 @@ header {
 .barra-navegacion ul li {
   padding: 0.5rem 5%;
   cursor: pointer;
-  font-size: calc(12px + ((20 - 12) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 10px;
 }
 
 .barra-navegacion ul li:hover {
@@ -74,7 +74,7 @@ header {
   cursor: pointer;
   font-weight: bolder;
   color: var(--second-text-color);
-  font-size: calc(15px + ((22 - 15) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 13px;
   pointer-events: none;
 }
 
@@ -86,23 +86,13 @@ input::-webkit-inner-spin-button {
 
 /** Media-Query */
 
-@media (min-width: 700px) {
+@media (min-width: 500px) {
   .barra-navegacion ul li {
-    font-size: calc(15px + ((25 - 15) * ((100vw - 320px) / (1200 - 320))));
+    font-size: 12px;
   }
 
   .barra-navegacion ul li.is-active {
-    font-size: calc(17px + ((25 - 17) * ((100vw - 320px) / (1200 - 320))));
-  }
-}
-
-@media (min-width: 1000px) {
-  .barra-navegacion ul li {
-    font-size: calc(5px + ((10 - 5) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  .barra-navegacion ul li.is-active {
-    font-size: calc(10px + ((15 - 10) * ((100vw - 320px) / (1200 - 320))));
+    font-size: 14px;
   }
 }
 
@@ -115,8 +105,13 @@ input::-webkit-inner-spin-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 40%;
   margin-top: var(--header-height);
+}
+
+.contenedor-comision,
+.contenedor-ganancia {
+  margin-top: 1.5rem;
 }
 
 .contenedor {
@@ -124,12 +119,12 @@ input::-webkit-inner-spin-button {
 }
 
 .contenedor-porcentaje {
-  min-height: 60vh;
+  height: 50vh;
   width: 100%;
 }
 
 .contenedor-cantidad {
-  min-height: 20vh;
+  height: 20vh;
   width: 100%;
 }
 
@@ -143,90 +138,33 @@ input::-webkit-inner-spin-button {
   margin: 2vh 5%;
   width: 90%;
   padding: 0.3rem;
-  font-size: calc(15px + ((20 - 15) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 14px;
   border-radius: 0.3rem;
 }
 
 .contenedor-comision h1,
 .contenedor-ganancia h2 {
   text-align: center;
-  font-size: calc(15px + ((25 - 15) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 20px;
 }
 
 #ganancia,
 #resultado,
 #ganancia-diaria {
-  font-size: calc(16px + ((25 - 16) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 16px;
   margin: 0.5rem 5%;
   text-align: center;
 }
 
-#procesar {
-  display: block;
-  margin: 10% auto;
-  width: 50%;
-  cursor: pointer;
-}
-
-#procesar:active {
-  background-color: var(--second-color);
-  color: var(--first-color);
-}
-
 #comision {
   color: var(--second-text-color);
-  font-size: calc(12px + ((20 - 12) * ((100vw - 320px) / (1200 - 320))));
+  font-size: 12px;
+  margin-top: 0.5rem;
 }
 
 /** Media-Query */
 
-@media (min-width: 400px) {
-  .contenedor-porcentaje input,
-  .contenedor-cantidad input,
-  .contenedor-comision input,
-  .contenedor-ganancia input {
-    padding: 0.5rem;
-    font-size: calc(17px + ((22 - 17) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  .contenedor-comision h1,
-  .contenedor-ganancia h2 {
-    font-size: calc(18px + ((25 - 18) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  #ganancia,
-  #resultado,
-  #ganancia-diaria {
-    font-size: calc(18px + ((25 - 18) * ((100vw - 320px) / (1200 - 320))));
-  }
-}
-
-@media (min-width: 700px) {
-  .contenedor-porcentaje input,
-  .contenedor-cantidad input,
-  .contenedor-comision input,
-  .contenedor-ganancia input {
-    padding: 1rem;
-    font-size: calc(22px + ((30 - 22) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  .contenedor-comision h1,
-  .contenedor-ganancia h2 {
-    font-size: calc(21px + ((30 - 21) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  #ganancia,
-  #resultado,
-  #ganancia-diaria {
-    font-size: calc(20px + ((30 - 20) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  #comision {
-    font-size: calc(15px + ((25 - 15) * ((100vw - 320px) / (1200 - 320))));
-  }
-}
-
-@media (min-width: 1000px) {
+@media (min-width: 500px) {
   .form-container {
     display: flex;
     align-items: center;
@@ -245,43 +183,40 @@ input::-webkit-inner-spin-button {
     margin: 10px;
     width: 20%;
     padding: 0.5rem;
-    font-size: calc(8px + ((13 - 8) * ((100vw - 320px) / (1200 - 320))));
+    font-size: 15px;
   }
 
   .contenedor-comision h1,
   .contenedor-ganancia h2 {
-    font-size: calc(12px + ((20 - 12) * ((100vw - 320px) / (1200 - 320))));
+    font-size: 20px;
   }
 
   .contenedor-comision input,
   .contenedor-ganancia input {
     width: 50%;
     padding: 0.5rem;
-    font-size: calc(10px + ((15 - 10) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  .contenedor-comision > *,
-  .contenedor-ganancia > * {
-    margin: 1.5rem;
+    font-size: 15px;
   }
 
   #ganancia,
   #resultado,
   #ganancia-diaria {
-    font-size: calc(10px + ((15 - 10) * ((100vw - 320px) / (1200 - 320))));
-    margin-top: 5%;
+    font-size: 18px;
+    margin-top: 6rem;
+    letter-spacing: 0.5px;
   }
 
-  #procesar {
-    width: 13%;
-    font-size: calc(5px + ((12 - 5) * ((100vw - 320px) / (1200 - 320))));
-  }
-
-  .contenedor-comision #procesar {
-    width: 40%;
+  #resultado,
+  #ganancia-diaria {
+    margin-top: 2rem;
   }
 
   #comision {
-    font-size: calc(5px + ((10 - 5) * ((100vw - 320px) / (1200 - 320))));
+    font-size: 13px;
+  }
+
+  #cantidad-anterior,
+  #cantidad-siguiente {
+    width: 200px;
   }
 }

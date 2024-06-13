@@ -5,7 +5,6 @@ const precio = document.getElementById("precio-ARS"),
   ganancia = document.getElementById("ganancia"),
   cantidad = document.getElementById("cantidad"),
   resultado = document.getElementById("resultado"),
-  boton = document.getElementById("procesar"),
   mainElement = document.querySelector("main"),
   datosMemoria = document.querySelectorAll("[data-memoria]"),
   datosActualizar = document.querySelectorAll("[data-actualizar]");
@@ -16,20 +15,16 @@ const actualizarDatosMemoria = () => {
 
     if (datos !== null) ele.value = datos;
 
-    ele.addEventListener("input", () =>
-      localStorage.setItem(ele.id, ele.value)
-    );
+    ele.addEventListener("input", () => localStorage.setItem(ele.id, ele.value));
   });
 };
 
 const calcularTasaEspecial = () => {
-  const tasaEspecial =
-    (Number(tasaVenta.value) * 100) / Number(tasaCompra.value);
+  const tasaEspecial = (Number(tasaVenta.value) * 100) / Number(tasaCompra.value);
 
   const valorFinal = (tasaEspecial - 100).toFixed(2);
 
-  if (Math.sign(valorFinal) === 1)
-    return (ganancia.innerText = "Balance Negativo");
+  if (Math.sign(valorFinal) === 1) return (ganancia.innerText = "Balance Negativo");
 
   ganancia.innerText = `${Math.abs(valorFinal)}%`;
 };
@@ -41,8 +36,7 @@ const calcularPorcentaje = () => {
 
   const porcentaje = (Number(tasaVenta.value) * 100) / tasaCompra.value - 100;
 
-  if (Math.sign(porcentaje) === 1)
-    return (ganancia.innerText = "Balance Negativo");
+  if (Math.sign(porcentaje) === 1) return (ganancia.innerText = "Balance Negativo");
 
   ganancia.innerText = `${Math.abs(porcentaje.toFixed(2))}%`;
 };
@@ -58,10 +52,9 @@ const calcularCantidad = () => {
 
     const separadorCantidad = formatoCantidad.split(",");
 
-    const formatoCantidadResultado = `${separadorCantidad[0].replace(
-      /\B(?=(\d{3})+(?!\d))/g,
-      "."
-    )},${separadorCantidad[1]}`;
+    const formatoCantidadResultado = `${separadorCantidad[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${
+      separadorCantidad[1]
+    }`;
 
     resultado.innerText = `${formatoCantidadResultado} ARS`;
   } else {
@@ -78,12 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target === boton) {
-    e.preventDefault();
-    calcularPorcentaje();
-    calcularCantidad();
-  }
-
   if (e.target.getAttribute("data-ruta") === "index.html") {
     window.location.href = `../../index.html`;
     return;

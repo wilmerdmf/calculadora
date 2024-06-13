@@ -2,7 +2,6 @@ const cantidad = document.getElementById("cantidad-bolivar"),
   resultado = document.getElementById("resultado"),
   datosMemoria = document.querySelectorAll("[data-memoria]"),
   datosActualizar = document.querySelectorAll("[data-actualizar]"),
-  boton = document.getElementById("procesar"),
   comisionTotal = document.getElementById("comision"),
   cantidadAnterior = document.getElementById("cantidad-anterior"),
   cantidadSiguiente = document.getElementById("cantidad-siguiente"),
@@ -14,9 +13,7 @@ const actualizarDatosMemoria = () => {
 
     if (datos !== null) ele.value = datos;
 
-    ele.addEventListener("input", () =>
-      localStorage.setItem(ele.id, ele.value)
-    );
+    ele.addEventListener("input", () => localStorage.setItem(ele.id, ele.value));
   });
 };
 
@@ -33,10 +30,9 @@ const calcularComision = () => {
 
     const separadorCantidad = formatoCantidad.split(",");
 
-    const formatoCantidadResultado = `${separadorCantidad[0].replace(
-      /\B(?=(\d{3})+(?!\d))/g,
-      "."
-    )},${separadorCantidad[1]}`;
+    const formatoCantidadResultado = `${separadorCantidad[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".")},${
+      separadorCantidad[1]
+    }`;
 
     resultado.innerText = `${formatoCantidadResultado} Bs`;
   } else {
@@ -45,21 +41,15 @@ const calcularComision = () => {
     resultado.innerText = `${formatoCantidadResultado.replace(".", ",")} Bs`;
   }
 
-  comisionTotal.innerText = `Comisión: ${comision
-    .toFixed(2)
-    .replace(".", ",")} Bs`;
+  comisionTotal.innerText = `Comisión: ${comision.toFixed(2).replace(".", ",")} Bs`;
 };
 
 const calcularGanancia = () => {
-  if (!cantidadSiguiente.value || !cantidadAnterior.value)
-    return (gananciaDiaria.innerText = 0);
+  if (!cantidadSiguiente.value || !cantidadAnterior.value) return (gananciaDiaria.innerText = 0);
 
-  const cantidad =
-    (Number(cantidadAnterior.value) * 100) / Number(cantidadSiguiente.value) -
-    100;
+  const cantidad = (Number(cantidadAnterior.value) * 100) / Number(cantidadSiguiente.value) - 100;
 
-  if (Math.sign(cantidad) === 1)
-    return (gananciaDiaria.innerText = "Balance Negativo");
+  if (Math.sign(cantidad) === 1) return (gananciaDiaria.innerText = "Balance Negativo");
 
   const formatoCantidad = cantidad.toFixed(2);
 
@@ -72,13 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target === boton) {
-    e.preventDefault();
-    actualizarDatosMemoria();
-    calcularComision();
-    calcularGanancia();
-  }
-
   if (e.target.getAttribute("data-ruta") === "index.html") {
     window.location.href = `./index.html`;
     return;
