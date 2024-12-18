@@ -9,19 +9,17 @@ import ESPForm from "./components/Modules/ESPForm/ESPForm";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/VES" element={<VESForm />} />
-          <Route path="/COP" element={<COPForm />} />
-          <Route path="/PEN" element={<PENForm />} />
-          <Route path="/ARS" element={<ARSForm />} />
-          <Route path="/ESP" element={<ESPForm />} />
-          <Route path="/" element={<DIFForm />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter basename="/calculadora">
+      <Header />
+      <Routes>
+        <Route path="/VES" element={<VESForm />} />
+        <Route path="/COP" element={<COPForm />} />
+        <Route path="/PEN" element={<PENForm />} />
+        <Route path="/ARS" element={<ARSForm />} />
+        <Route path="/ESP" element={<ESPForm />} />
+        <Route path="/" element={<DIFForm />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
