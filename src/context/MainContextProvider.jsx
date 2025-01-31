@@ -42,6 +42,9 @@ export function MainContextProvider({ children }) {
     });
   };
 
+  // Estado tasa final Vzla
+  const [tasaFinalVzla, setTasaFinalVzla] = useState(0);
+
   // Guardar datos globales en el LocalStorage
   const saveGlobalData = useCallback(() => {
     localStorage.setItem("tasaUSDTData", JSON.stringify(tasaUSDT));
@@ -53,6 +56,7 @@ export function MainContextProvider({ children }) {
     const storedUSDTData = localStorage.getItem("tasaUSDTData");
     const storedMontoData = localStorage.getItem("montoData");
 
+    // Cargar tasaUSDT
     if (storedUSDTData && typeof storedUSDTData === "string") {
       try {
         const parsedUSDTData = JSON.parse(storedUSDTData);
@@ -68,6 +72,7 @@ export function MainContextProvider({ children }) {
       }
     }
 
+    // Cargar monto
     if (storedMontoData && typeof storedMontoData === "string") {
       try {
         const parsedMontoData = JSON.parse(storedMontoData);
@@ -104,6 +109,8 @@ export function MainContextProvider({ children }) {
     handleMontoChange,
     saveGlobalData,
     loadGlobalData,
+    tasaFinalVzla,
+    setTasaFinalVzla,
   };
 
   return <MainContext.Provider value={{ customIds, state }}>{children}</MainContext.Provider>;

@@ -273,3 +273,38 @@ input[type="number"] {
     height: 20%;
   }
 }
+
+/*********! Modulo Multi Tasa *********/
+
+.modulo-multi-tasa {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  height: 280px;
+  width: 200px;
+  border: 1px solid var(--second-color);
+}
+
+.modulo-multi-tasa button {
+  background-color: inherit;
+  color: var(--second-color);
+  padding: 10px;
+  border: 1px solid var(--second-color);
+  border-radius: 10px;
+}
+
+.modulo-multi-tasa p:first-of-type {
+  color: var(--third-color);
+}
+
+/** Media-Query */
+
+@media (min-width: 800px) {
+  .modulo-multi-tasa {
+    display: flex;
+  }
+}
