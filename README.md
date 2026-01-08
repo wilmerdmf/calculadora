@@ -1,6 +1,6 @@
 # Calculadora de Comisiones
 
-Esta es una aplicación web interactiva desarrollada en React, diseñada para calcular comisiones, diferencias y montos transferidos en múltiples monedas. Fue creada específicamente para optimizar tareas relacionadas con mi trabajo actual, ofreciendo una solución práctica y funcional.
+Esta es una aplicación web interactiva desarrollada en React, diseñada para calcular comisiones, diferencias y montos transferidos en múltiples monedas. Fue creada específicamente para optimizar tareas relacionadas con mi trabajo, ofreciendo una solución práctica y funcional.
 
 ## Características
 
