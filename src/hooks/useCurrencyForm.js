@@ -14,8 +14,8 @@ export const useCurrencyForm = (currency) => {
   const form = useSelector((state) => {
     return state?.app?.currencyForms?.[currency] || DEFAULT_FORM;
   });
-  const tasaUSDT = useSelector((state) => state?.app?.precioUsdtCompra || 0);
-  const monto = useSelector((state) => state?.app?.montoFinal || 0);
+  const tasaUSDT = useSelector((state) => state?.app?.precioUsdtCompra || "");
+  const monto = useSelector((state) => state?.app?.montoFinal || "");
 
   // Manejar formulario de precioCompra y tasaVenta
   const handleFormChange = (e) => {

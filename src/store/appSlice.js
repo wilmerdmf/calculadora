@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  precioUsdtCompra: 0,
-  montoFinal: 0,
-  tasaFinalVzla: 0,
-  saldoAnterior: 0,
-  saldoActual: 0,
-  saldoTotal: 0,
+  precioUsdtCompra: "",
+  montoFinal: "",
+  tasaFinalVzla: "",
+  saldoAnterior: "",
+  saldoActual: "",
+  saldoTotal: "",
 
   currencyForms: {
-    VES: { precioCompra: 0, tasaVenta: 0 },
-    COP: { precioCompra: 0, tasaVenta: 0 },
-    PEN: { precioCompra: 0, tasaVenta: 0 },
-    ARS: { precioCompra: 0, tasaVenta: 0 },
-    ESP: { precioCompra: 0, tasaVenta: 0 },
+    VES: { precioCompra: "", tasaVenta: "" },
+    COP: { precioCompra: "", tasaVenta: "" },
+    PEN: { precioCompra: "", tasaVenta: "" },
+    ARS: { precioCompra: "", tasaVenta: "" },
+    ESP: { precioCompra: "", tasaVenta: "" },
   },
 };
 
@@ -60,7 +60,7 @@ const appSlice = createSlice({
       }
 
       if (!state.currencyForms[currency]) {
-        state.currencyForms[currency] = { precioCompra: 0, tasaVenta: 0 };
+        state.currencyForms[currency] = { precioCompra: "", tasaVenta: "" };
       }
 
       state.currencyForms[currency][field] = value;
