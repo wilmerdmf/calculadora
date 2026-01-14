@@ -1,43 +1,52 @@
-import { useContext } from "react";
-import { MainContext } from "../context/MainContext";
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTasaFinalVzla } from "../store/appSlice";
+import { RATE_INCREMENTS } from "../constants";
 
-const useSplitRates = (tasaActual) => {
-  const { state } = useContext(MainContext);
-  const { tasaFinalVzla, setTasaFinalVzla } = state;
+// Hook dividir tasas para el componente TieredRates
+export const useSplitRates = (tasaActual) => {
+  const dispatch = useDispatch();
+  const tasaFinalVzla = useSelector((state) => state.app.tasaFinalVzla);
 
-  // Manejador para establecer tasa original
-  const handleActualVzlaRate = (e) => {
-    e.preventDefault();
-    setTasaFinalVzla(tasaActual);
-    localStorage.setItem("tasaFinalVzlaData", JSON.stringify(tasaFinalVzla));
-  };
-
-  // Tasa de Venezuela dividida por monto
-  const tasasDivididas = {
-    tasa1: `${Number(tasaFinalVzla)}`,
-    tasa2: `${(Number(tasaFinalVzla) + 0.0002).toFixed(4)}`,
-    tasa3: `${(Number(tasaFinalVzla) + 0.0004).toFixed(4)}`,
-    tasa4: `${(Number(tasaFinalVzla) + 0.0007).toFixed(4)}`,
-  };
-
-  // Cargar data de local storage
-  const loadData = () => {
+  // Cargar datos al montar
+  useEffect(() => {
     const storedTasaData = localStorage.getItem("tasaFinalVzlaData");
 
-    if (storedTasaData && typeof storedTasaData === "string") {
+    if (storedTasaData) {
       try {
-        const parsedUSDTData = JSON.parse(storedTasaData);
-
-        if (parsedUSDTData && typeof parsedUSDTData === "string") {
-          setTasaFinalVzla(parsedUSDTData);
+        const parsedData = JSON.parse(storedTasaData);
+        if (parsedData) {
+          dispatch(setTasaFinalVzla(parsedData));
         }
       } catch (error) {
-        console.error("Error al cargar datos", error);
+        console.error("Error cargando tasaFinalVzlaData:", error);
       }
     }
+  }, [dispatch]);
+
+  // Establecer tasa actual VES
+  const handleActualVzlaRate = (e) => {
+    e.preventDefault();
+
+    if (!tasaActual) return;
+
+    dispatch(setTasaFinalVzla(tasaActual));
   };
 
-  return { handleActualVzlaRate, tasasDivididas, loadData };
-};
+  // Calcular tasas para el componente TieredTRates
+  const tasasDivididas = useMemo(() => {
+    const baseRate = Number(tasaFinalVzla);
 
-export default useSplitRates;
+    return {
+      tasa1: baseRate.toFixed(4),
+      tasa2: (baseRate + RATE_INCREMENTS.tier2).toFixed(4),
+      tasa3: (baseRate + RATE_INCREMENTS.tier3).toFixed(4),
+      tasa4: (baseRate + RATE_INCREMENTS.tier4).toFixed(4),
+    };
+  }, [tasaFinalVzla]);
+
+  return {
+    handleActualVzlaRate,
+    tasasDivididas,
+  };
+};

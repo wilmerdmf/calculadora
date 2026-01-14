@@ -1,37 +1,37 @@
-import { useState } from "react";
-import { helpFormatAmount } from "../helpers/helpFormatAmount";
+import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSaldoTotal } from "../store/appSlice";
+import { helpFormatMoney } from "../helpers/helpFormatMoney";
+import { helpCalcCommission } from "../helpers/helpCalcCommission";
+import { COMISION_PORCENTAJE } from "../constants";
 
+// Hook calcular comision pago movil
 export const useCalculateCommission = () => {
-  // Estado saldo
-  const [saldo, setSaldo] = useState({
-    saldoTotal: 0,
-  });
+  const dispatch = useDispatch();
+  const saldoTotal = useSelector((s) => s.app.saldoTotal);
 
-  // Manejador del formulario saldo
+  // Manejar formulario pago movil
   const handleAmountChange = (e) => {
-    const { value } = e.target;
-    setSaldo({
-      ...saldo,
-      saldoTotal: value,
-    });
+    dispatch(setSaldoTotal(e.target.value));
   };
 
-  // Estado comision
-  const [comision, setComision] = useState(0);
+  // Comisión de pago movil
+  const comision = useMemo(() => {
+    const c = helpCalcCommission(saldoTotal, COMISION_PORCENTAJE);
+    return helpFormatMoney(c, { currency: "Bs" });
+  }, [saldoTotal]);
 
-  // Estado saldo real
-  const [saldoReal, setSaldoReal] = useState(0);
+  // Cantidad neta a enviar por pago movil
+  const saldoReal = useMemo(() => {
+    const c = helpCalcCommission(saldoTotal, COMISION_PORCENTAJE);
+    const neto = Number(saldoTotal) - c;
+    return helpFormatMoney(neto, { currency: "Bs" });
+  }, [saldoTotal]);
 
-  // Calcular comisión y saldo real
-  const calcComission = () => {
-    const comisionFinal = (Number(saldo.saldoTotal) * 0.3) / 100;
-
-    const saldoRestante = Number(saldo.saldoTotal) - comisionFinal;
-
-    helpFormatAmount(saldoRestante, setSaldoReal, "Bs");
-
-    helpFormatAmount(comisionFinal, setComision, "Bs");
+  return {
+    saldoTotal,
+    handleAmountChange,
+    comision,
+    saldoReal,
   };
-
-  return { saldo, handleAmountChange, comision, calcComission, saldoReal };
 };

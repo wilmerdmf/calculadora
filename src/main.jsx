@@ -1,10 +1,14 @@
-import { createRoot } from "react-dom/client";
-import { MainContextProvider } from "./context/MainContextProvider.jsx";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store/store";
+import App from "./App";
 import "./main.css";
-import App from "./App.jsx";
 
-createRoot(document.getElementById("root")).render(
-  <MainContextProvider>
-    <App />
-  </MainContextProvider>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>
 );

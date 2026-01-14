@@ -1,40 +1,18 @@
 import { NavLink } from "react-router-dom";
+import { NAV_ROUTES } from "../../constants";
 
 const Header = () => {
   return (
     <header className="header-container">
-      <nav className="header-navbar-container">
+      <nav className="header-navbar-container" aria-label="Main navigation">
         <ul className="header-list-container">
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/VES">
-              VES
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/COP">
-              COP
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/PEN">
-              PEN
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/ARS">
-              ARS
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/ESP">
-              ESP
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={({ isActive }) => (isActive ? "is-active" : null)} to="/">
-              DIF
-            </NavLink>
-          </li>
+          {NAV_ROUTES.map(({ key, path }) => (
+            <li key={key}>
+              <NavLink to={path} className={({ isActive }) => (isActive ? "is-active" : "")}>
+                {key}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

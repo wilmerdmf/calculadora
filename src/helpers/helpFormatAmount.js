@@ -1,5 +1,5 @@
 export const helpFormatAmount = (amount, setterFunction, currency) => {
-  // Formatea el output agregando separadores de decimales y miles
+  // Formatear el output agregando separadores de decimales y miles
   let formatoCantidadResultado;
 
   if (amount > 999.99) {

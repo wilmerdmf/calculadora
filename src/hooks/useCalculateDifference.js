@@ -1,36 +1,35 @@
-import { useState } from "react";
+import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSaldoAnterior, setSaldoActual } from "../store/appSlice";
+import { helpFormatMoney } from "../helpers/helpFormatMoney";
+import { helpCalcPercentDiff } from "../helpers/helpCalcPercentDiff";
 
+// Hook calcular diferencia diaria
 export const useCalculateDifference = () => {
-  // Estado diferencias
-  const [diffValues, setDiffValues] = useState({
-    saldoAnterior: 0,
-    saldoActual: 0,
-  });
+  const dispatch = useDispatch();
+  const saldoAnterior = useSelector((s) => s.app.saldoAnterior);
+  const saldoActual = useSelector((s) => s.app.saldoActual);
 
-  // Manejador del formulario diferencias Saldo Anterior - Actual
+  // Manejar formulario de diferencia diaria
   const handleDiffForm = (e) => {
-    const { value, name } = e.target;
-    setDiffValues({
-      ...diffValues,
-      [name]: value,
-    });
+    const { name, value } = e.target;
+    if (name === "saldoAnterior") dispatch(setSaldoAnterior(value));
+    if (name === "saldoActual") dispatch(setSaldoActual(value));
   };
 
-  // Estado porcentaje de ganancia diaria
-  const [gananciaDiaria, setGananciaDiaria] = useState("0");
+  // Diferencia diaria
+  const gananciaDiaria = useMemo(() => {
+    const diff = Number(saldoActual) - Number(saldoAnterior);
+    const pct = helpCalcPercentDiff(saldoAnterior, saldoActual);
 
-  // Calcular porcentaje de ganancia diaria
-  const calcDifference = () => {
-    if (!diffValues.saldoAnterior || !diffValues.saldoActual) return setGananciaDiaria("0");
+    if (!pct && !diff) return "0,00 (0%)";
 
-    const numberValue = (Number(diffValues.saldoAnterior) * 100) / Number(diffValues.saldoActual) - 100;
+    return `${helpFormatMoney(diff, { sign: true })} (${pct >= 0 ? "+" : "-"}${Math.abs(pct).toFixed(2)}%)`;
+  }, [saldoAnterior, saldoActual]);
 
-    if (Math.sign(numberValue) === 1) return setGananciaDiaria("Balance Negativo");
-
-    const formatoCantidad = numberValue.toFixed(2);
-
-    setGananciaDiaria(`${Math.abs(formatoCantidad)}%`);
+  return {
+    gananciaDiaria,
+    diffValues: { saldoAnterior, saldoActual },
+    handleDiffForm,
   };
-
-  return { gananciaDiaria, calcDifference, diffValues, handleDiffForm };
 };

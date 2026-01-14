@@ -143,9 +143,15 @@ input[type="number"] {
   font-weight: 500;
 }
 
-.main-form-container output {
+.ptext-container,
+.rtext-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+
   margin-top: 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -175,11 +181,11 @@ input[type="number"] {
     width: 85%;
   }
 
-  .main-form-container.top output {
+  .main-form-container.top .ptext-container {
     grid-area: opt1;
   }
 
-  .main-form-container.bottom output {
+  .main-form-container.bottom .rtext-container {
     grid-area: opt2;
   }
 
@@ -203,6 +209,12 @@ input[type="number"] {
     grid-area: monto;
     width: 50%;
     margin-bottom: 5%;
+  }
+
+  .ptext-container,
+  .rtext-container {
+    width: auto;
+    margin-top: 0;
   }
 }
 
@@ -295,6 +307,7 @@ input[type="number"] {
   padding: 10px;
   border: 1px solid var(--second-color);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .modulo-multi-tasa p:first-of-type {
